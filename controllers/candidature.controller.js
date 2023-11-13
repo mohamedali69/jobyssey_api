@@ -1,4 +1,5 @@
 const db = require('../models')
+const { sendEmail } = require('../utils/mailer')
 const Notification = db.notification
 const Candidature = db.candidature
 const operation = db.Sequelize.Op
@@ -40,6 +41,16 @@ exports.updateCandidature = (req, res) => {
     where: { id: id }
   })
     .then((data) => {
+      sendEmail("muhammadalichakhari@gmail.com", 'Bonjour', "Hello friendy")
+      .then((res)=>
+      {
+        res.send(data);
+      })
+      .catch((err)=>
+      {
+        res.send(err);
+      }
+      )
       Notification.create({
         message: req.body.message,
         userId: req.body.userId, 

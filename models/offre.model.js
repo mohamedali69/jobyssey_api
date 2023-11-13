@@ -29,6 +29,7 @@ module.exports=(sequelize,Sequelize)=>
         },
 
         salaire:
+        
         {
             type:Sequelize.STRING,
             allowNull: true,
