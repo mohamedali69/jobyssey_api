@@ -41,31 +41,29 @@ exports.updateCandidature = (req, res) => {
     where: { id: id }
   })
     .then((data) => {
+      // Send email and handle its response
       sendEmail("muhammadalichakhari@gmail.com", 'Bonjour', "Hello friendy")
-      .then((res)=>
-      {
-        res.send(data);
-      })
-      .catch((err)=>
-      {
-        res.send(err);
-      }
-      )
-      Notification.create({
-        message: req.body.message,
-        userId: req.body.userId, 
-      })
         .then(() => {
-          res.send(data);
+          // Create Notification
+          return Notification.create({
+            message: req.body.message,
+            userId: req.body.userId, 
+          });
+        })
+        .then(() => {
+          res.send(data); // Send the response after email and notification creation
         })
         .catch((err) => {
-          res.send(err);
+          console.error(err);
+          res.status(500).send(err); // Send an error response
         });
     })
     .catch((err) => {
-      res.send(err);
+      console.error(err);
+      res.status(500).send(err); // Send an error response
     });
 };
+
 
 //delete
 exports.delete = (req, res) => {
