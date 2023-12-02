@@ -6,10 +6,13 @@ const basename = path.basename(__filename);
 
 const db = {};
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
-
+const sequelize = new Sequelize('mysql://l2tojla7p2ddbvmrcva2:pscale_pw_GybtTF8ivVcamBSm5ze0moWAnj0SMKNWXdOsXpzfcsu@aws.connect.psdb.cloud/jobyssey_db', {
+  dialect: 'mysql',
+  dialectOptions: {
+    ssl: {
+      rejectUnauthorized: true
+    }
+  },
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -17,7 +20,6 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     idle: dbConfig.pool.idle
   }
 });
-
 fs
   .readdirSync(__dirname)
   .filter(file => {
