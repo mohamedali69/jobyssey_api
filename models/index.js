@@ -6,13 +6,8 @@ const basename = path.basename(__filename);
 
 const db = {};
 
-const sequelize = new Sequelize('mysql://l2tojla7p2ddbvmrcva2:pscale_pw_GybtTF8ivVcamBSm5ze0moWAnj0SMKNWXdOsXpzfcsu@aws.connect.psdb.cloud/jobyssey_db', {
-  dialect: 'mysql',
-  dialectOptions: {
-    ssl: {
-      rejectUnauthorized: true
-    }
-  },
+const sequelize = new Sequelize('postgresql://jobysseyproject:IyzSELW5mB8j@ep-purple-term-96252117.us-east-2.aws.neon.tech/jobyssey_db?sslmode=require', {
+  dialect: 'postgres',
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
