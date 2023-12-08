@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const candidatController = require('../controllers/candidat.controller')
-const authenticateAndAuthorize = require('../middleware/authenticateAndAuthorize')
-
 // Create a new candidat
 router.post('/', candidatController.create);
 
