@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: ["http://localhost:5173","http://localhost:5174", "https://pfe-project-opal.vercel.app", "https://www.jobyssey.live/"]
+  origin: ["http://localhost:5173","http://localhost:5174", "https://pfe-project-opal.vercel.app", "https://www.jobyssey.live"]
 };
 
 app.use(cors(corsOptions));
