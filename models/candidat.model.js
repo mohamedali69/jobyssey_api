@@ -16,6 +16,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    portfolio: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     cv: {
       type: Sequelize.STRING,
       allowNull: false,

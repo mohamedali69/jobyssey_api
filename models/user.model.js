@@ -23,19 +23,19 @@ module.exports = (sequelize, Sequelize) => {
     },
     dNaissance: {
       type: Sequelize.DATEONLY,
-      allowNull: true,
+      allowNull: false,
     },
     telephone: {
       type: Sequelize.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     pays: {
       type: Sequelize.STRING,
-      allowNull: true,
+      allowNull: false,
     },  
     adresse: {
       type: Sequelize.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     photo: {
       type: Sequelize.STRING,
