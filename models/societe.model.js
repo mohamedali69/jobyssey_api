@@ -10,7 +10,15 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        pays: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
         adresse: {
+          type: Sequelize.STRING,
+          allowNull: false,
+      },
+        siteWeb: {
             type: Sequelize.STRING,
             allowNull: false,
         },
