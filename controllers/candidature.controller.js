@@ -40,9 +40,10 @@ exports.updateCandidature = (req, res) => {
   Candidature.update(req.body, {
     where: { id: id }
   })
+  let {candidateEmail, objectifEmail, contenuEmail} = req.body
     .then((data) => {
       // Send email and handle its response
-      sendEmail("muhammadalichakhari@gmail.com", 'Bonjour', "Hello friendy")
+      sendEmail(candidateEmail, objectifEmail, contenuEmail)
         .then(() => {
           // Create Notification
           return Notification.create({
