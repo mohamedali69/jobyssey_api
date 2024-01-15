@@ -37,7 +37,7 @@ exports.findAll= (req, res) => {
 //update
 exports.updateCandidature = (req, res) => {
   let id = req.params.id;
-  let {candidateEmail, objectifEmail, contenuEmail} = req.body
+  let {candidateEmail, objectifEmail, contenuEmail} = req.body;
   Candidature.update(req.body, {
     where: { id: id }
   })
