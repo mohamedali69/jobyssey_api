@@ -28,7 +28,7 @@ module.exports=(sequelize,Sequelize)=>
             allowNull: false,
         },
         isRemote: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
             defaultValue: false,
           },
         salaire:
