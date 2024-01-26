@@ -25,6 +25,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DATEONLY,
       allowNull: false,
     },
+    pays: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     telephone: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -37,15 +41,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        isIn: [["homme", "femme", "N/A","male","female"]],
+        isIn: [["homme", "femme", "N/A", "male", "female"]],
       },
-    }
+    },
   });
 
   User.associate = (models) => {
-    User.hasOne(models.candidat, { onDelete: 'CASCADE' });
-    User.hasOne(models.societe, { onDelete: 'CASCADE' });
-    User.hasMany(models.notification, { onDelete: 'CASCADE' });
+    User.hasOne(models.candidat, { onDelete: "CASCADE" });
+    User.hasOne(models.societe, { onDelete: "CASCADE" });
+    User.hasMany(models.notification, { onDelete: "CASCADE" });
   };
 
   return User;
