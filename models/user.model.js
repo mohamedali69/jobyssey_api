@@ -29,6 +29,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    paysCode:{
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     telephone: {
       type: Sequelize.STRING,
       allowNull: false,
