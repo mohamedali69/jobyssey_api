@@ -1,8 +1,8 @@
-const db = require('../models')
-const { sendEmail } = require('../utils/mailer')
-const Notification = db.notification
-const Candidature = db.candidature
-const operation = db.Sequelize.Op
+const db = require("../models");
+// const { sendEmail } = require("../utils/mailer");
+const Notification = db.notification;
+const Candidature = db.candidature;
+const operation = db.Sequelize.Op;
 
 // Create
 exports.create = (req, res) => {
@@ -19,75 +19,77 @@ exports.create = (req, res) => {
           res.send(err);
         });
     })
-    
+
     .catch((err) => {
-      res.send(err)
-    })
-}
+      res.send(err);
+    });
+};
 //read
-exports.findAll= (req, res) => {
-    Candidature.findAll({include : [db.candidat, db.offre]}).then((data) => {
-        res.send(data)
-      })
-      .catch((err) => {
-        res.send(err)
-      })
-}
+exports.findAll = (req, res) => {
+  Candidature.findAll({ include: [db.candidat, db.offre] })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
 //update
 exports.updateCandidature = (req, res) => {
   let id = req.params.id;
-  let {candidateEmail, objectifEmail, contenuEmail} = req.body;
+  let { candidateEmail, objectifEmail, contenuEmail } = req.body;
   Candidature.update(req.body, {
-    where: { id: id }
+    where: { id: id },
   })
-    .then((data) => {
-      // Send email and handle its response
-      sendEmail(candidateEmail, objectifEmail, contenuEmail)
-        .then(() => {
-          // Create Notification
-          return Notification.create({
-            message: req.body.message,
-            userId: req.body.userId, 
-          });
-        })
-        .then(() => {
-          res.send(data); // Send the response after email and notification creation
-        })
-        .catch((err) => {
-          console.error(err);
-          res.status(500).send(err); // Send an error response
-        });
+    // .then((data) => {
+    //   // Send email and handle its response
+    //   sendEmail(candidateEmail, objectifEmail, contenuEmail)
+    .then(() => {
+      // Create Notification
+      return Notification.create({
+        message: req.body.message,
+        userId: req.body.userId,
+      });
+    })
+    .then(() => {
+      res.send(data); // Send the response after email and notification creation
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send(err); // Send an error response
     });
+  // })
+  // .catch((err) => {
+  //   console.error(err);
+  //   res.status(500).send(err); // Send an error response
+  // });
 };
-
 
 //delete
 exports.delete = (req, res) => {
-    let id = req.params.id;
-    Candidature.destroy({
-        where: {id: id},
-    }).then((data) => {
-        res.send({message: 'Deleted Candidature', data})
-      })
-      .catch((err) => {
-        res.send(err)
-      })
-}
+  let id = req.params.id;
+  Candidature.destroy({
+    where: { id: id },
+  })
+    .then((data) => {
+      res.send({ message: "Deleted Candidature", data });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 //find by id
-exports.findById = (req,res)=>{
-    let id = req.params.id;
-    Candidature.findByPk(id, {include : [db.candidat, db.offre]}).then((data) => {
-        res.send(data)
-      })
-      .catch((err) => {
-        res.send(err)
-      })
-}
+exports.findById = (req, res) => {
+  let id = req.params.id;
+  Candidature.findByPk(id, { include: [db.candidat, db.offre] })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
 exports.findByOffre = (req, res) => {
   let id = req.params.id;
@@ -128,4 +130,4 @@ exports.findByCandidat = (req, res) => {
     .catch((err) => {
       res.send(err);
     });
-}
+};
