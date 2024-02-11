@@ -1,0 +1,63 @@
+//build the image
+docker build . -t node-app
+
+//run the container
+docker run -p 8080:8080 -d node-app
+
+//stop the container
+docker stop <container_id>
+
+//remove the container
+docker rm <container_id>
+
+//remove the image
+docker rmi node-app
+
+//list all containers
+docker ps -a
+
+//list all images
+docker images
+
+//list all networks
+docker network ls
+
+//list all volumes
+docker volume ls
+
+//inspect a container
+docker inspect <container_id>
+
+//inspect an image
+docker inspect <image_id>
+
+//inspect a network
+docker inspect <network_id>
+
+//inspect a volume
+docker inspect <volume_id>
+
+//show logs of a container
+docker logs <container_id>
+
+//show logs of a container in real time
+docker logs -f <container_id>
+
+//show logs of a container since a specific time
+docker logs --since 2021-01-01 <container_id>
+
+//show logs of a container until a specific time
+docker logs --until 2021-01-01 <container_id>
+
+//show logs of a container with a specific number of lines
+docker logs --tail 100 <container_id>
+
+//show logs of a container with a specific number of lines in real time
+docker logs --tail 100 -f <container_id>
+
+//show logs of a container with a specific number of lines since a specific time
+docker logs --tail 100 --since 2021-01-01 <container_id>
+
+//show logs of a container with a specific number of lines until a specific time
+docker logs --tail 100 --until 2021-01-01 <container_id>
+
