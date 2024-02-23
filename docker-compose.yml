@@ -1,13 +1,26 @@
-version: "3.8"
-
+version: "3"
 services:
-  app:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
+    depends_on:
+      - postgres
     environment:
-      NODE_ENV: production
+      - NODE_VERSION=18
+    ports:
+      - 5001:5000
+
+volumes:
+  postgres-data:
